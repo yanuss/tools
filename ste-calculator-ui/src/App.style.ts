@@ -1,10 +1,27 @@
 import { css } from "@emotion/react";
-import { colors } from "./theme.style";
+import { colors, transition } from "./theme.style";
+
+export const layout = ({ background }: { background: string }) => css`
+  height: 100vh;
+  &:before {
+    content: "";
+    background-image: url(${background});
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    transition: opacity ${transition};
+    opacity: 0;
+    ${background ? `opacity: 1` : ""}
+  }
+`;
 
 export const headerStyle = css`
   display: flex;
   justify-content: flex-end;
-  padding-bottom: 40px;
+  height: 83px;
 `;
 
 export const container = css`
@@ -13,7 +30,8 @@ export const container = css`
   justify-content: center;
 `;
 
-export const wrapper = css`
+export const wrapper = ({ color }: { color: string }) => css`
+  z-index: 1;
   justify-content: flex-start;
   max-width: 540px;
   flex-direction: column;
@@ -23,8 +41,9 @@ export const wrapper = css`
   box-shadow: 0 0 6px hsl(0deg 0% 100% / 16%);
   border-radius: 27px;
   background-color: #19202b;
-  border: 6px solid ${colors.yellow};
+  border: 6px solid ${color ? colors[color] : colors.yellow};
   padding: 24px;
+  transition: border-color ${transition};
 `;
 
 export const buttonStyle = css`
@@ -77,10 +96,11 @@ export const formControl = css`
   padding-bottom: 24px;
 `;
 
-export const detailsContainer = css`
+export const detailsContainer = ({ color }: { color: string }) => css`
   display: flex;
   flex: 0 1 auto;
   flex-direction: column;
+  color: ${colors.hasOwnProperty(color) ? colors[color] : "inherit"};
 }
 `;
 export const detailsRow = css`
@@ -136,4 +156,10 @@ export const messageWrapper = css`
 export const errorIcon = css`
   color: ${colors.red};
   padding-right: 16px;
+`;
+
+export const factionWrapper = css`
+  ${center}
+  flex-direction: column;
+  text-align: center;
 `;
