@@ -9,12 +9,13 @@ export const headerStyle = css`
 
 export const container = css`
   padding: 24px;
-  max-width: 540px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 `;
 
 export const wrapper = css`
   justify-content: flex-start;
+  max-width: 540px;
   flex-direction: column;
   display: flex;
   flex: 0 1 auto;

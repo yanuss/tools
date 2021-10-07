@@ -6,7 +6,7 @@ import { colors } from "./theme.style";
 
 injectGlobal`
   body {
-    color: white;
+    color: ${colors.white};
     background-color: ${colors.bakgroundDarkBlue};
     overflow-x: hidden;
     width: 100%;
