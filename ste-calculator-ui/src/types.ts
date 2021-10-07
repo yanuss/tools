@@ -5,9 +5,9 @@ export interface GeneralObject {
 export interface StarTerraEnergy {
   address: string;
   // block_time: number;
-  ste_value: number;
-  stt_amount: number;
-  lp_amount: number;
+  ste_value: number | null;
+  stt_amount: number | null;
+  lp_amount: number | null;
   faction: string;
 }
 export interface StakingResult {

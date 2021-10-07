@@ -5,6 +5,7 @@ export const layout = ({ background }: { background: string }) => css`
   height: 100vh;
   &:before {
     content: "";
+    z-index: -1;
     background-image: url(${background});
     background-size: cover;
     position: absolute;
@@ -12,7 +13,7 @@ export const layout = ({ background }: { background: string }) => css`
     right: 0px;
     bottom: 0px;
     left: 0px;
-    transition: opacity ${transition};
+    transition: all ${transition};
     opacity: 0;
     ${background ? `opacity: 1` : ""}
   }
@@ -31,7 +32,6 @@ export const container = css`
 `;
 
 export const wrapper = ({ color }: { color: string }) => css`
-  z-index: 1;
   justify-content: flex-start;
   max-width: 540px;
   flex-direction: column;
@@ -59,9 +59,9 @@ export const buttonStyle = css`
   text-transform: initial;
   background-color: ${colors.yellow}!important;
 
-  .MuiButton-containedPrimary:hover {
-    box-shadow: 0px 0px 10px ${colors.yellow}!important
-    background-color: ${colors.yellow}!important
+  :hover {
+    box-shadow: 0px 0px 10px ${colors.yellow}!important;
+    background-color: ${colors.yellow}!important;
   }
 `;
 
@@ -71,7 +71,7 @@ export const inputContainer = css`
   border: 2px solid #fff;
   input {
     font: inherit;
-    color: #ffffff;
+    color: ${colors.white};
     width: 100%;
     border: none;
     height: 32px;

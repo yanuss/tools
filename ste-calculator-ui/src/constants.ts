@@ -1,4 +1,11 @@
 const constants = {
+  initialData: {
+    address: "",
+    ste_value: null,
+    stt_amount: null,
+    lp_amount: null,
+    faction: "",
+  },
   labels: {
     run: "Run",
     loading: "Loading...",

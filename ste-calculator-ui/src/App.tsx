@@ -83,7 +83,7 @@ const App = () => {
   };
 
   const factionData = constants.factions.find((el) => el.key === data?.faction);
-  const themeColor = data?.faction || "";
+  const themeColorName = data?.faction || "";
 
   return (
     <div
@@ -93,7 +93,7 @@ const App = () => {
       <header css={headerStyle}></header>
       <main>
         <div css={container}>
-          <div css={wrapper({ color: themeColor })}>
+          <div css={wrapper({ color: themeColorName })}>
             <FormControl css={formControl}>
               <InputBase
                 css={inputContainer}
@@ -125,7 +125,7 @@ const App = () => {
             <Collapse in={!loading && Boolean(data)}>
               <div
                 css={detailsContainer({
-                  color: themeColor,
+                  color: themeColorName,
                 })}
               >
                 {data && !loading && (
