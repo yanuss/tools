@@ -35,7 +35,8 @@ export const getSteValue = async (address: string): Promise<StarTerraEnergy> => 
         block_time: currentBlock,
         ste_value: calculateSte(stakerInfo),
         lp_amount: stakerInfo.lp_amount,
-        stt_amount: stakerInfo.stt_amount
+        stt_amount: stakerInfo.stt_amount,
+        faction: stakerInfo.faction
     };
 };
 
@@ -62,6 +63,7 @@ const getStakerInfo = async (address: string, block_time: number): Promise<Staki
     const queryStringify = JSON.stringify(query);
     let lp_amount = "";
     let stt_amount = "";
+    let faction = "";
 
     for (let [pool_name, contracts] of Object.entries(pools)) {
         try {
@@ -71,12 +73,14 @@ const getStakerInfo = async (address: string, block_time: number): Promise<Staki
                 const request_stt = await queryContract(pools[pool_name].stt_contract, queryStringify);
                 lp_amount = request_lp.bond_amount;
                 stt_amount = request_stt.bond_amount;
+                faction = pool_name;
             } else {
                 const request_stt = await queryContract(contracts.stt_contract, queryStringify);
                 if (request_stt.bond_amount !== "0") {
                     request_lp = await queryContract(pools[pool_name].lp_contract, queryStringify);
                     lp_amount = request_lp.bond_amount;
                     stt_amount = request_stt.bond_amount;
+                    faction = pool_name;
                 }
             }
         } catch (e) {
@@ -86,7 +90,8 @@ const getStakerInfo = async (address: string, block_time: number): Promise<Staki
 
     return {
         lp_amount: parseInt(lp_amount)/1000000,
-        stt_amount: parseInt(stt_amount)/1000000
+        stt_amount: parseInt(stt_amount)/1000000,
+        faction: faction
     }
 }
 

@@ -4,6 +4,7 @@ export interface StarTerraEnergy {
     ste_value: number;
     stt_amount: number;
     lp_amount: number;
+    faction: string;
 }
 
 export interface StakerInfoQuery {
@@ -28,4 +29,5 @@ export interface StakingPools {
 export interface StakingResult {
     lp_amount: number;
     stt_amount: number;
+    faction: string;
 }
